@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSaveMovie(movieForm)" #movieForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="title"
+        [ngModel]="movie?.title"
+        required
+        minlength="3"
+        placeholder="Movie Title"
+        #title="ngModel">
+      <mat-error *ngIf="title.invalid">Please enter a movie title.</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="4"
+        name="content"
+        [ngModel]="movie?.content"
+        required
+        placeholder="Movie Content"
+        #content="ngModel"></textarea>
+      <mat-error *ngIf="content.invalid">Please enter a description of the movie.</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Movie</button>
+  </form>
+</mat-card>
